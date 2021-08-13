@@ -1,16 +1,17 @@
 import React from 'react'
 import FormBuilder from './FormBuilder'
 import { Input, Checkbox, Switch, Button, Select, InputNumber, Radio, DatePicker } from 'antd'
-import _ from 'lodash'
+import isArray from 'lodash/isArray'
+import isPlainObject from 'lodash/isPlainObject'
 
 const mapOptions = options => {
-  if (!_.isArray(options)) {
+  if (!isArray(options)) {
     throw new Error('Options should be array in form builder meta.')
   }
   return options.map(opt => {
-    if (_.isArray(opt)) {
+    if (isArray(opt)) {
       return { value: opt[0], label: opt[1] }
-    } else if (_.isPlainObject(opt)) {
+    } else if (isPlainObject(opt)) {
       return opt
     } else {
       return { value: opt, label: opt }
